@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+*.java text diff=java
+*.sql text
+*.md text
+*.xml text
+*.yml text
+*.yaml text

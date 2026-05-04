@@ -1,0 +1,25 @@
+# Build output
+target/
+build/
+out/
+
+# IDE metadata
+.idea/
+.vscode/
+*.iml
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Runtime and local configuration
+*.log
+.env
+.env.*
+!.env.example
+
+# Test and coverage reports
+coverage/
+*.exec
