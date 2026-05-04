@@ -15,8 +15,52 @@ The Java service follows a ports-and-services shape. `SampleTrackingService` own
 
 This design meets the continuing needs of the global Alfred H Knight group by emphasizing globally unique identifiers, timezone-aware records, auditable state changes, and focused validation before high-value mineral, metal, or agriculture sample data is committed.
 
+## API
+
+The Spring Boot API accepts sample uploads at `POST /api/samples`.
+
+Example request:
+
+```bash
+curl -X POST http://localhost:8080/api/samples \
+  -H "Content-Type: application/json" \
+  -d '{
+    "externalReference": "AHK-MIN-001",
+    "commodityType": "Copper Concentrate",
+    "officeLocation": "Liverpool, UK",
+    "priority": "HIGH",
+    "analysisWeight": 12.5000,
+    "receivedAt": "2026-05-04T09:30:00Z",
+    "operatorId": "operator.liverpool"
+  }'
+```
+
+Validation failures return `400 Bad Request`. Critical persistence failures return `503 Service Unavailable` with a stable crisis defect reference.
+
 ## Build And Test
 
 ```bash
 mvn test
 ```
+
+## Run Locally
+
+Start PostgreSQL:
+
+```bash
+docker compose up -d
+```
+
+Run the API:
+
+```bash
+mvn spring-boot:run
+```
+
+The application uses these defaults:
+
+- Database URL: `jdbc:postgresql://localhost:5432/ahk_samples`
+- Username: `ahk`
+- Password: `ahk`
+
+GitHub Actions runs `mvn test` on pushes and pull requests to `main`.
